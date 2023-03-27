@@ -1,0 +1,26 @@
+local weaponTexts = {
+Draining_Scythe_Name = "Draining Scythe",
+Draining_Scythe_Description = "Damage and push target, healing all Mechs on kill.",
+Draining_Scythe_Upgrade1 = "+1 Damage",
+Draining_Scythe_A_UpgradeDescription = "Increases damage by 1.",
+Draining_Scythe_Upgrade2 = "+1 Damage",
+Draining_Scythe_B_UpgradeDescription = "Increases damage by 1.",
+Radiant_Beam_Name = "Radiant Beam",
+Radiant_Beam_Description = "Fire in a line up to 3 tiles away, damaging enemies, healing allies, and pushing the last affected unit.",
+Radiant_Beam_Upgrade1 = "Unlimited Range",
+Radiant_Beam_Upgrade2 = "+1 Damage/Healing",
+Radiant_Beam_A_UpgradeDescription = "This attack can now be fired any distance.",
+Radiant_Beam_B_UpgradeDescription = "Increases damage and healing by 1.",
+Overcharge_Channel_Name = "Overcharger",
+Overcharge_Channel_Description = "Damage self to allow another Mech to move and act again.",
+Overcharge_Channel_Upgrade1 = "Boost",
+Overcharge_Channel_A_UpgradeDescription = "Boosts the target, increasing its next attack damage.",
+Storm_Seeder_Name = "Storm Seeder",
+Storm_Seeder_Description = "Damage self to strike a single tile anywhere on the map.",
+Storm_Seeder_Upgrade1 = "+1 Damage",
+Storm_Seeder_A_UpgradeDescription = "Increases damage by 1.",
+Storm_Seeder_Upgrade2 = "Bonus Action",
+Storm_Seeder_B_UpgradeDescription = "Mech can act again after making this attack for the first time each turn.",
+}
+
+return weaponTexts
