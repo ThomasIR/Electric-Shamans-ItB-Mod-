@@ -85,7 +85,7 @@ Radiant_Beam_A = Radiant_Beam:new{Damage = 1, Range = 7, PathSize = 7, UpgradeDe
 	},
 }
 Radiant_Beam_B = Radiant_Beam:new{Damage = 2, Range = 3, PathSize = 3, UpgradeDescription = "Increases damage and healing by 1.",}
-Radiant_Beam_AB = Radiant_Beam:new{Damage = 2, Damage = 7, PathSize = 7, 
+Radiant_Beam_AB = Radiant_Beam:new{Damage = 2, Range = 7, PathSize = 7, 
 	TipImage = {
 		Unit = Point(2,4),
 		Enemy = Point(2,0),
