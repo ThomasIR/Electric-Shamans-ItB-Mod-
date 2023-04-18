@@ -47,7 +47,7 @@ function Draining_Scythe:GetSkillEffect(p1, p2)
 		local repaired_units = {}
 		for i = 0, board_size.x - 1 do
 			for j = 0, board_size.y - 1  do
-				if Board:IsPawnTeam(Point(i,j),TEAM_PLAYER) then
+				if Board:IsPawnTeam(Point(i,j),TEAM_PLAYER) and Board:GetPawn(Point(i,j)):IsMech() then
 					local pawn_id = Board:GetPawn(Point(i,j)):GetId()
 					if not repaired_units[pawn_id] then--prevents healing the same unit twice if it's large
 						ret:AddDamage(SpaceDamage(Point(i,j),-1))
