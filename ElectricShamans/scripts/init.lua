@@ -98,7 +98,8 @@ end
 return {
     id = "Electric Shamans",
     name = "Electric Shamans",
-    version = "033119",
+    icon = "/squad.png",
+    version = "1.0",
     init = init,
     load = load
 }
