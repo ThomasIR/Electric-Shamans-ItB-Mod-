@@ -50,31 +50,15 @@ function Storm_Seeder:GetSkillEffect(p1,p2)
 				mission.LastStormSeedTurn = 0
 			end
 			local mission = GetCurrentMission()
-			LOG("Before Script: ", mission.LastStormSeedTurn)
-			if Board:GetPawn(p1):IsActive() then
-				LOG("Before Script: Active.")
-			end
 			if mission.LastStormSeedTurn ~= Game:GetTurnCount() then
 				ret:AddDelay(0.2)
 				ret:AddScript([[
 					local self = Point(]].. p1:GetString() .. [[)
 					Board:GetPawn(self):SetActive(true)
-					if Board:GetPawn(self):IsActive() then
-						LOG("Start of Script: Reactivated.")
-					end
 					Game:TriggerSound("/ui/map/flyin_rewards");
 					Board:Ping(self, GL_Color(255, 255, 255));
-					LOG("Start of Script: ", GetCurrentMission().LastStormSeedTurn)
 					GetCurrentMission().LastStormSeedTurn = Game:GetTurnCount();
-					LOG("End of Script: ", GetCurrentMission().LastStormSeedTurn)
-					if Board:GetPawn(self):IsActive() then
-						LOG("End of Script: Reactivated.")
-					end
 				]])
-			end
-			LOG("After Script: ", mission.LastStormSeedTurn)
-			if Board:GetPawn(p1):IsActive() then
-				LOG("After Script: Reactivated.")
 			end
 		end
 	end
