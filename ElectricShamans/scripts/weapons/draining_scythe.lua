@@ -29,20 +29,25 @@ function Draining_Scythe:GetSkillEffect(p1, p2)
 	local direction = GetDirection(p2 - p1)
 
 	local damage = SpaceDamage(p2, self.Damage, direction)
-	damage.sAnimation = "explopunch1_"..direction
+	damage.sAnimation = "para_scythe_attack_"..direction
 
-	local boost = false
+	local boost = 0
 	if Board:GetPawn(p1):IsBoosted() then
-		boost = true
+		boost = boost + 1
+	end
+	if Board:IsPawnSpace(p2) and Board:GetPawn(p2):IsBoosted() then
+		boost = boost - 1
 	end
 
+	local deadlierTrigger = false
 	if Board:IsPawnSpace(p2) and self:IsDeadlier(damage, Board:GetPawn(p2), boost) then
 		damage.bKO_Effect = true
+		deadlierTrigger = true
 	end
-	ret:AddMelee(p2 - DIR_VECTORS[direction], damage, NO_DELAY)
+	ret:AddMelee(p2 - DIR_VECTORS[direction], damage)
 	--ret:AddBounce(target,8)
 
-	if Board:IsPawnSpace(p2) and self:IsDeadlier(damage, Board:GetPawn(p2), boost) then
+	if deadlierTrigger then
 		local board_size = Board:GetSize()
 		local repaired_units = {}
 		for i = 0, board_size.x - 1 do
@@ -64,11 +69,13 @@ end
 
 function Draining_Scythe:IsDeadlier(damage,pawn,boost)
 	--Variables
-	local boost = false or boost
-	if boost and damage.iDamage > 0 then boost = 1 else boost = 0 end
+	--local boost = 0 or boost
+	if damage.iDamage <= 0 then boost = 0 end
 	local dir = damage.iPush
 	local nextPoint = damage.loc + DIR_VECTORS[dir]
 	local bump = Board:IsValid(nextPoint) and Board:IsBlocked(nextPoint,PATH_PROJECTILE) and not pawn:IsGuarding()
+	local falseCrack = Board:IsCracked(damage.loc) and Board:IsValid(nextPoint)
+		and not Board:IsBlocked(nextPoint, PATH_PROJECTILE) and not pawn:IsGuarding()
 	local pushD = 1
 	if IsPassiveSkill("Passive_ForceAmp") then pushD = 2 end --consider 2 bump damage if Force Amps
 	--local armor = armorDetection.IsArmor(pawn) --I'll implement this later if I need to
@@ -78,7 +85,7 @@ function Draining_Scythe:IsDeadlier(damage,pawn,boost)
 	--Deadly on boost, armor and acid
 	dam = SpaceDamage(damage.loc, damage.iDamage, damage.iPush)
 	dam.iDamage = dam.iDamage + boost
-	if Board:IsDeadly(dam,pawn) then
+	if Board:IsDeadly(dam,pawn) and (pawn:GetHealth() <= dam.iDamage or not falseCrack) then
 		return true
 	end
 
