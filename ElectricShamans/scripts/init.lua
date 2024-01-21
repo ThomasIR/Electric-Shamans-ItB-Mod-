@@ -82,7 +82,13 @@ local function init(self)
     },
 });
 
+modApi:appendAsset("img/effects/para_scythe_attack_U.png",self.resourcePath.."img/effects/para_scythe_attack_U.png")
+modApi:appendAsset("img/effects/para_scythe_attack_R.png",self.resourcePath.."img/effects/para_scythe_attack_R.png")
+modApi:appendAsset("img/effects/para_scythe_attack_L.png",self.resourcePath.."img/effects/para_scythe_attack_L.png")
+modApi:appendAsset("img/effects/para_scythe_attack_D.png",self.resourcePath.."img/effects/para_scythe_attack_D.png")
+
 require(self.scriptPath.."pawns")
+require(self.scriptPath.."animations")
 require(self.scriptPath.."weapons/draining_scythe")
 require(self.scriptPath.."weapons/radiant_beam")
 require(self.scriptPath.."weapons/overcharge_channel")
