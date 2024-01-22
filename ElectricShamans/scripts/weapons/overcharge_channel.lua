@@ -45,13 +45,14 @@ function Overcharge_Channel:GetSkillEffect(p1, p2)
 	ret:AddSound("/props/lightning_strike")
 	local dummy_damage = SpaceDamage(p2,0)
 	dummy_damage.sAnimation = "LightningBolt1"
-	ret:AddDamage(dummy_damage)
 	
-	--[[local mark = "combat/icons/tatu_icon"
-	if not Board:GetPawn(p2):IsActive() or Board:GetSize() == Point(6,6) then mark = mark.."_rearm" end
-	if self.Boost then mark = mark.."_boost" end
-	if self.Repair == 0 then mark = mark.."_center" end
-	if mark ~= "combat/icons/tatu_icon" then damage.sImageMark = mark..".png" end]]--
+	if Board:GetSize() == Point(6,6) or not Board:GetPawn(p2):IsActive() then
+		local mark = "combat/icons/overcharge_icon"
+		if self.Boost then mark = mark.."_boost" end
+		dummy_damage.sImageMark = mark..".png"
+	end
+
+	ret:AddDamage(dummy_damage)
 	
 	if Board:GetSize() == Point(6,6) or not Board:GetPawn(p2):IsActive() then
 		ret:AddScript(string.format("Board:GetPawn(%s):SetActive(true)", p2:GetString()))
