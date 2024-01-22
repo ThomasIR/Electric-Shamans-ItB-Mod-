@@ -87,6 +87,11 @@ modApi:appendAsset("img/effects/para_scythe_attack_R.png",self.resourcePath.."im
 modApi:appendAsset("img/effects/para_scythe_attack_L.png",self.resourcePath.."img/effects/para_scythe_attack_L.png")
 modApi:appendAsset("img/effects/para_scythe_attack_D.png",self.resourcePath.."img/effects/para_scythe_attack_D.png")
 
+modApi:appendAsset("img/combat/icons/overcharge_icon.png", self.resourcePath.."img/combat/icons/overcharge_icon.png")
+	Location["combat/icons/overcharge_icon.png"] = Point(-12,7)
+modApi:appendAsset("img/combat/icons/overcharge_icon_boost.png", self.resourcePath.."img/combat/icons/overcharge_icon_boost.png")
+	Location["combat/icons/overcharge_icon_boost.png"] = Point(-12,7)
+
 require(self.scriptPath.."pawns")
 require(self.scriptPath.."animations")
 require(self.scriptPath.."weapons/draining_scythe")
